@@ -26,11 +26,13 @@ const pathConfig = {
     postmanPath: postmanPath
 };
 
+const exportConnectionPath = path.join(__dirname, "config");
 // encrypt db by cryptr
 const option = {
     isDatabaseEncrypt: true,
     secretKey: "a5!93D",
-    tokenSecretKey: "$3C123t"
+    tokenSecretKey: "$3C123t",
+    pathToExport: exportConnectionPath
 };
 
 const autoGenerate = new AutoGenerate(db, pathConfig, option);

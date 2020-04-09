@@ -1,4 +1,4 @@
-AUTO GENERATE @godigit:
+## AUTO GENERATE @godigit:
 
 - auto create table by config JSON file.
 - encrypt your database connection.
@@ -14,7 +14,7 @@ Those are 3 key you need to write config JSON file:
     - table field
 3. route
 
-## EXAMPLE
+## Example
 ```
 {
     "module_name": "customer",
@@ -100,10 +100,12 @@ const pathConfig = {
 };
 
 // encrypt db by cryptr: if isDatabaseEncrypt is True you need to put secretKey for encrypt db
+const exportConnectionPath = path.join(__dirname, "config"); // path to export db connection
 const option = {
     isDatabaseEncrypt: true,
     secretKey: "XXXXXX",
-    tokenSecretKey: "$3C123t"
+    tokenSecretKey: "XXXXXX",
+    pathToExport: exportConnectionPath
 };
 
 // call auto generate function

@@ -1,6 +1,7 @@
 const ImportSQL = require('./lib/import-sql');
 const ModuleGenerate = require("./lib/module-generate");
 const envCryptr = require("./lib/env-cryptr");
+const fs = require('fs');
 
 module.exports = class AutoGenerate {
     constructor(dbConnect, path, option) {
@@ -11,8 +12,6 @@ module.exports = class AutoGenerate {
         };
         this.postmanPath = path.postmanPath;
         this.sqlImportPath = path.sqlFolderPath;
-        console.log(this.sqlImportPath);
-        
         this.option = option;
     }
 
@@ -34,7 +33,8 @@ module.exports = class AutoGenerate {
                 tokenSecretKey: this.option.tokenSecretKey == undefined ? this.option.secretKey : this.option.tokenSecretKey
             };
 
-            console.log(config);
+            fs.writeFileSync(this.option.pathToExport + '/config.json', JSON.stringify(config, null, 4));
+            console.log("Generate Database Connection Success.");
             this.importSQLStatement();
         } else {
             this.importSQLStatement();
